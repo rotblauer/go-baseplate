@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -83,7 +84,20 @@ func New(enableCORS bool) (*chi.Mux, error) {
 		w.Write([]byte("pong"))
 	})
 
-	client := "./public"
+	// Select the the first-available public path,
+	// in order of priority.
+	var client string
+	maybeClientPaths := []string{
+		filepath.Join("public", "dist"),
+		filepath.Join("public", "public"),
+		filepath.Join("public"),
+	}
+	for _, c := range maybeClientPaths {
+		if fi, err := os.Stat(c); err == nil && fi.IsDir() {
+			client = c
+			break
+		}
+	}
 	r.Get("/*", SPAHandler(client))
 
 	return r, nil
