@@ -21,6 +21,7 @@ var (
 )
 
 // AccountStore defines database operations for account.
+// INTERFACE-STORE
 type AccountStore interface {
 	Get(id int) (*pwdless.Account, error)
 	Update(*pwdless.Account) error

@@ -22,6 +22,7 @@ import (
 )
 
 // AuthStorer defines database operations on accounts and tokens.
+// INTERFACE-STORE
 type AuthStorer interface {
 	GetAccount(id int) (*Account, error)
 	GetAccountByEmail(email string) (*Account, error)

@@ -18,6 +18,7 @@ var (
 )
 
 // ProfileStore defines database operations for a profile.
+// INTERFACE-STORE
 type ProfileStore interface {
 	Get(accountID int) (*models.Profile, error)
 	Update(p *models.Profile) error

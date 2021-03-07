@@ -20,6 +20,7 @@ var (
 )
 
 // AccountStore defines database operations for account management.
+// INTERFACE-STORE
 type AccountStore interface {
 	List(*database.AccountFilter) ([]pwdless.Account, int, error)
 	Create(*pwdless.Account) error
