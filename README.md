@@ -1,12 +1,5 @@
+
 # Go Restful API Boilerplate
-
-[![GoDoc Badge]][GoDoc] [![GoReportCard Badge]][GoReportCard]
-
-Easily extendible RESTful API boilerplate aiming to follow idiomatic go and best practice.
-
-The goal of this boiler is to have a solid and structured foundation to build upon on.
-
-Any feedback and pull requests are welcome and highly appreciated. Feel free to open issues just for comments and discussions.
 
 ## Features
 The following feature set is a minimal selection of typical Web API requirements:
