@@ -4,14 +4,14 @@ package migrate
 import (
 	"log"
 
-	"github.com/dhax/go-base/database"
+	"github.com/dhax/go-base/pgdatabase"
 	"github.com/go-pg/migrations"
 	"github.com/go-pg/pg"
 )
 
 // Migrate runs go-pg migrations
 func Migrate(args []string) {
-	db, err := database.DBConn()
+	db, err := pgdatabase.DBConn()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,7 +36,7 @@ func Migrate(args []string) {
 
 // Reset runs reverts all migrations to version 0 and then applies all migrations to latest
 func Reset() {
-	db, err := database.DBConn()
+	db, err := pgdatabase.DBConn()
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	"github.com/dhax/go-base/auth/pwdless"
-	"github.com/dhax/go-base/database"
+	"github.com/dhax/go-base/pgdatabase"
 	validation "github.com/go-ozzo/ozzo-validation"
 
 	"github.com/go-chi/chi"
@@ -22,7 +22,7 @@ var (
 // AccountStore defines database operations for account management.
 // INTERFACE-STORE
 type AccountStore interface {
-	List(*database.AccountFilter) ([]pwdless.Account, int, error)
+	List(*pgdatabase.AccountFilter) ([]pwdless.Account, int, error)
 	Create(*pwdless.Account) error
 	Get(id int) (*pwdless.Account, error)
 	Update(*pwdless.Account) error
@@ -102,7 +102,7 @@ func newAccountListResponse(a *[]pwdless.Account, count int) *accountListRespons
 }
 
 func (rs *AccountResource) list(w http.ResponseWriter, r *http.Request) {
-	f, err := database.NewAccountFilter(r.URL.Query())
+	f, err := pgdatabase.NewAccountFilter(r.URL.Query())
 	if err != nil {
 		render.Render(w, r, ErrRender(err))
 		return

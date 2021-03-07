@@ -8,7 +8,7 @@ import (
 	"github.com/go-pg/pg"
 	"github.com/sirupsen/logrus"
 
-	"github.com/dhax/go-base/database"
+	"github.com/dhax/go-base/pgdatabase"
 	"github.com/dhax/go-base/logging"
 )
 
@@ -27,10 +27,10 @@ type API struct {
 
 // NewAPI configures and returns application API.
 func NewAPI(db *pg.DB) (*API, error) {
-	accountStore := database.NewAccountStore(db)
+	accountStore := pgdatabase.NewAccountStore(db)
 	account := NewAccountResource(accountStore)
 
-	profileStore := database.NewProfileStore(db)
+	profileStore := pgdatabase.NewProfileStore(db)
 	profile := NewProfileResource(profileStore)
 
 	api := &API{

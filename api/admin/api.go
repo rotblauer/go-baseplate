@@ -10,7 +10,7 @@ import (
 	"github.com/go-pg/pg"
 
 	"github.com/dhax/go-base/auth/authorize"
-	"github.com/dhax/go-base/database"
+	"github.com/dhax/go-base/pgdatabase"
 	"github.com/dhax/go-base/logging"
 )
 
@@ -32,7 +32,7 @@ type API struct {
 // NewAPI configures and returns admin application API.
 func NewAPI(db *pg.DB) (*API, error) {
 
-	accountStore := database.NewAdmAccountStore(db)
+	accountStore := pgdatabase.NewAdmAccountStore(db)
 	accounts := NewAccountResource(accountStore)
 
 	api := &API{

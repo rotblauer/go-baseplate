@@ -12,7 +12,7 @@ import (
 	"github.com/dhax/go-base/api/app"
 	"github.com/dhax/go-base/auth/jwt"
 	"github.com/dhax/go-base/auth/pwdless"
-	"github.com/dhax/go-base/database"
+	"github.com/dhax/go-base/pgdatabase"
 	"github.com/dhax/go-base/email"
 	"github.com/dhax/go-base/logging"
 	"github.com/go-chi/chi"
@@ -25,7 +25,7 @@ import (
 func New(enableCORS bool) (*chi.Mux, error) {
 	logger := logging.NewLogger()
 
-	db, err := database.DBConn()
+	db, err := pgdatabase.DBConn()
 	if err != nil {
 		logger.WithField("module", "database").Error(err)
 		return nil, err
@@ -37,7 +37,7 @@ func New(enableCORS bool) (*chi.Mux, error) {
 		return nil, err
 	}
 
-	authStore := database.NewAuthStore(db)
+	authStore := pgdatabase.NewAuthStore(db)
 	authResource, err := pwdless.NewResource(authStore, mailer)
 	if err != nil {
 		logger.WithField("module", "auth").Error(err)
